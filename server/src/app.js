@@ -4,13 +4,17 @@ const morgan = require('morgan');
 
 const app = express();
 
-app.use(morgan('combine'));
+app.use(morgan('combined'));
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({extended: true}));
+app.post("/register",(req,res)=>{
+    res.send(`Hello ${req.body.email}, please be patient, your account is currently being created`);
+    
+})
 
-
-app.get("/",(req,res)=>{
-    res.send('hello world');
+app.get('/register', (req,res) =>{
+    res.send('Hello from get request')
 })
 
 
